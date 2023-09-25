@@ -1,6 +1,7 @@
 package com.example.homestaymanagementgroup_four.model;
 
 import com.sun.istack.NotNull;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +18,8 @@ public class Homestay {
 
     @NotNull
     private String description;
+    @NotNull
+    private String image;
 
     @NotNull
     private String locationDetail;
@@ -35,8 +38,23 @@ public class Homestay {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "service_homestay", joinColumns = @JoinColumn(name = "homestay_id"), inverseJoinColumns = @JoinColumn(name = "service_id"))
     List<Service> services;
+    @Transient
+    private MultipartFile multipartFile;
 
     public Homestay() {
+    }
+
+    public Homestay(Long id, String name, String description, String image, String locationDetail, Boolean isActive, Address address, Category category, List<Service> services, MultipartFile multipartFile) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.locationDetail = locationDetail;
+        this.isActive = isActive;
+        this.address = address;
+        this.category = category;
+        this.services = services;
+        this.multipartFile = multipartFile;
     }
 
     public Long getId() {
@@ -101,5 +119,21 @@ public class Homestay {
 
     public void setServices(List<Service> services) {
         this.services = services;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public MultipartFile getMultipartFile() {
+        return multipartFile;
+    }
+
+    public void setMultipartFile(MultipartFile multipartFile) {
+        this.multipartFile = multipartFile;
     }
 }
