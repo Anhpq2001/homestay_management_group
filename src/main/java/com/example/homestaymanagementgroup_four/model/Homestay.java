@@ -1,5 +1,6 @@
 package com.example.homestaymanagementgroup_four.model;
 
+import com.example.homestaymanagementgroup_four.utils.Strings;
 import com.sun.istack.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,6 +41,10 @@ public class Homestay {
     List<Service> services;
     @Transient
     private MultipartFile multipartFile;
+
+    private String firstAddress;
+
+    private String secondAddress;
 
     public Homestay() {
     }
@@ -135,5 +140,21 @@ public class Homestay {
 
     public void setMultipartFile(MultipartFile multipartFile) {
         this.multipartFile = multipartFile;
+    }
+
+    public String getFirstAddress() {
+        return firstAddress;
+    }
+
+    public void setFirstAddress(String firstAddress) {
+        this.firstAddress = firstAddress;
+    }
+
+    public String getSecondAddress() {
+        return secondAddress;
+    }
+
+    public void setSecondAddress(String secondAddress) {
+        this.secondAddress = secondAddress;
     }
 }
